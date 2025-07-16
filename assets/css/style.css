@@ -1,0 +1,442 @@
+:root {
+  --bg-light: #ffffff;
+  --bg-dark: #0e0e0e;
+  --text-light: #000000;
+  --text-dark: #efefef;
+  --accent: #ff0000;
+}
+
+[data-theme="light"] {
+  --bg: var(--bg-light);
+  --text: var(--text-light);
+}
+
+[data-theme="dark"] {
+  --bg: var(--bg-dark);
+  --text: var(--text-dark);
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Helvetica Neue', sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.logo img {
+  width: 50px;
+  height: auto;
+}
+
+.logo span {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+
+.top-controls button {
+  margin-left: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  max-width: 800px;
+}
+
+.hero-title {
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.hero-title .line {
+  display: block;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.hero-title strong {
+  font-weight: 800;
+  position: relative;
+}
+
+.hero-subline {
+  margin-top: 0.2rem;
+  font-size: 1.1rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 550;
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.hero-links {
+  margin-top: 2rem;
+  display: flex;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 500;
+  justify-content: center;
+  gap: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.hero-links a {
+  position: relative;
+  display: inline-block;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.hero-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  background-color: var(--text);
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+.hero-links a:hover::after {
+  transform: scaleX(1);
+}
+
+.hero-links a:hover {
+  color: var(--accent); /* opsional jika ingin efek ganti warna */
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .hero-subline {
+    font-size: 0.95rem;
+  }
+
+  .hero-links {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center; 
+  }
+
+  .hero-links a {
+    font-size: 1rem;
+  }
+}
+
+.outline-only {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--text);
+  font-weight: 600;
+  display: inline-block;
+}
+
+.filled {
+  color: var(--text);
+  -webkit-text-stroke: 0;
+}
+
+.wavy-hover {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.wavy-hover {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.wavy-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.08em; /* Naik ke belakang teks */
+  width: 100%;
+  height: 25px;
+  background: url("data:image/svg+xml,%3Csvg width='100%25' height='15' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6 Q 25 -5, 50 6 T 100 6' stroke='%23ff0000' stroke-width='6' fill='none' /%3E%3C/svg%3E") repeat-x;
+  background-size: 100px 15px;
+  animation: none;
+  z-index: -1; /* berada di belakang teks */
+  pointer-events: none;
+  opacity: 85%;
+}
+
+.wavy-hover:hover::after {
+  animation: waveMove 1.2s linear infinite;
+  filter: brightness(1.2);
+}
+
+@keyframes waveMove {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 100px;
+  }
+}
+
+
+
+/* === Overlay Menu Redesigned === */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  z-index: 999;
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.overlay.visible {
+  pointer-events: auto;
+}
+
+.overlay-header {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  right: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.overlay-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.brand-logo {
+  width: 50px;
+  height: auto;
+}
+
+.brand-text {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.overlay-controls button {
+  margin-left: 1.2rem;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.close-btn {
+  font-size: 1.6rem;
+}
+
+/* ✅ PERBAIKAN POSISI TULISAN */
+.overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 12vw;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.overlay-nav {
+  list-style: none;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.overlay-nav li {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.overlay-nav .index {
+  font-size: 0.9rem;
+  margin-right: 0.8rem;
+  opacity: 0.6;
+}
+
+.overlay-nav a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.overlay-nav a:hover {
+  color: var(--accent);
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.social-links a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  color: var(--accent);
+}
+
+/* Blob placeholders */
+.overlay-blobs {
+  position: absolute;
+  left: 2rem;
+  top: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  pointer-events: none;
+}
+
+.overlay-blobs img {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .overlay-content {
+    left: 5vw;
+  }
+
+  .overlay-nav li {
+    font-size: 2rem;
+  }
+
+  .overlay-blobs img {
+    width: 80px;
+  }
+}
+
+/* Light Mode */
+[data-theme="light"] .logo,
+[data-theme="light"] .brand-logo {
+  filter: invert(0%); /* Hitam atau warna asli */
+}
+
+/* Dark Mode */
+[data-theme="dark"] .logo,
+[data-theme="dark"] .brand-logo {
+  filter: invert(100%); /* Membalik warna, jadi putih jika awalnya hitam */
+}
+
+#modeToggle img,
+#modeToggleOverlay img {
+  width: 24px;
+  height: 24px;
+  transition: filter 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  /* Ukuran dasar disamakan dulu */
+  object-fit: contain;
+}
+
+/* Khusus ikon sun di dark mode: lebih cerah dan scale normal */
+[data-theme="dark"] #modeToggle img[src*="sun.svg"],
+[data-theme="dark"] #modeToggleOverlay img[src*="sun.svg"] {
+  filter: brightness(2.5) contrast(1.2);
+  transform: scale(1);
+}
+
+/* Khusus ikon moon: sedikit lebih kecil supaya proporsional */
+#modeToggle img[src*="moon.svg"],
+#modeToggleOverlay img[src*="moon.svg"] {
+  transform: scale(0.79);
+}
+
+/* Hover efek untuk ikon (sedikit membesar dan lebih cerah) */
+#modeToggle:hover img,
+#modeToggleOverlay:hover img {
+  filter: brightness(1.5);
+  transform: scale(1.1);
+}
+
+/* Hover efek khusus dark mode + ikon sun */
+[data-theme="dark"] #modeToggle:hover img[src*="sun.svg"],
+[data-theme="dark"] #modeToggleOverlay:hover img[src*="sun.svg"] {
+  filter: brightness(3) contrast(1.3);
+  transform: scale(1.1);
+}
+
+/* Hover efek khusus ikon moon */
+#modeToggle:hover img[src*="moon.svg"],
+#modeToggleOverlay:hover img[src*="moon.svg"] {
+  transform: scale(0.9);
+}

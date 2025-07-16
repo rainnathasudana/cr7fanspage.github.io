@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — CR7</title>
+  <!-- Favicons -->
+  <link href="assets/img/ur-icon5.png" rel="icon">
+  <link href="assets/img/ur-icon5.png" rel="apple-touch-icon">
+
+  <link rel="stylesheet" href="assets/css/about.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+  <!-- HEADER: navbar persis seperti index -->
+  <header class="header">
+    <a href="index.html" class="logo">
+      <img src="assets/img/ur-icon2.svg" alt="Logo" />
+    </a>
+    <div class="top-controls">
+      <button id="langToggle">ID</button>
+      <button id="modeToggle" aria-label="Toggle Theme">
+        <img src="assets/img/moon.svg" alt="Theme icon" width="24" height="24" />
+      </button>
+      <button id="menuToggle">☰</button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="about-page">
+    <div class="text-content">
+      <h1 class="about-title">ABOUT</h1>
+      <div class="about-line"></div>
+      <p class="about-description">
+        Hey, my name is Cristiano Ronaldo but people often call me Ronaldo.<br>
+        I’m a professional footballer from Portugal and one of the most decorated athletes in the world.<br>
+        I’m passionate about the game, driven by goals and greatness and continue to inspire millions worldwide.
+      </p>
+      <a href="https://en.wikipedia.org/wiki/Cristiano_Ronaldo" class="about-resume" target="_blank">➥&emsp;my career</a>
+    </div>
+
+    <div class="photo-container">
+      <img src="assets/img/about.png" alt="Cristiano Ronaldo" />
+    </div>
+  </main>
+
+  <!-- OVERLAY NAVIGATION (identik index) -->
+  <div id="overlayMenu" class="overlay hidden">
+    <div class="overlay-header">
+      <a href="index.html" class="overlay-brand">
+    <img src="assets/img/ur-icon2.svg" alt="Logo" class="brand-logo" />
+    <span class="brand-text">CR7</span>
+    </a>
+      <div class="overlay-controls">
+        <button id="langToggleOverlay">ID</button>
+        <button id="modeToggleOverlay" aria-label="Toggle Theme">
+          <img src="assets/img/moon.svg" alt="Theme icon" width="24" height="24" />
+        </button>
+        <button id="closeMenu" class="close-btn">✖</button>
+      </div>
+    </div>
+
+  <div class="overlay-content">
+  <div class="overlay-inner">
+    <ul class="overlay-nav">
+      <li class="nav-item"><span class="index">01</span> <a href="index.html">HOME</a></li>
+      <li class="nav-item"><span class="index">02</span> <a href="work.html">WORK</a></li>
+      <li class="nav-item"><span class="index">03</span> <a href="about.html">ABOUT</a></li>
+      <li class="nav-item"><span class="index">04</span> <a href="contact.html">CONTACT</a></li>
+    </ul>
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/cristiano/" class="social-item" target="_blank">↗ instagram</a>
+      <a href="https://www.youtube.com/@cristiano/videos" class="social-item" target="_blank">↗ youtube</a>
+    </div>
+  </div>
+</div>
+
+  <script src="assets/java/about.js"></script>
+</body>
+</html>

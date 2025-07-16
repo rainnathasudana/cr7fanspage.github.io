@@ -1,0 +1,420 @@
+/* ========== ROOT THEME ========== */
+:root {
+  --bg-light: #ffffff;
+  --bg-dark: #0e0e0e;
+  --text-light: #000000;
+  --text-dark: #efefef;
+  --accent: #ff0000;
+}
+
+[data-theme="light"] {
+  --bg: var(--bg-light);
+  --text: var(--text-light);
+}
+[data-theme="dark"] {
+  --bg: var(--bg-dark);
+  --text: var(--text-dark);
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Helvetica Neue', sans-serif;
+  overflow: hidden; /* Prevent page scroll */
+}
+
+/* ========== HEADER ========== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo img {
+  width: 50px;
+  height: auto;
+}
+
+.logo span {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.top-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.top-controls button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* ========== WORK SECTION ========== */
+.work-section {
+  height: 100vh;
+}
+
+.work-container {
+  display: flex;
+  height: 100vh;
+  gap: 4rem;
+  padding: 6rem 2rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* LEFT: IMAGE PREVIEW */
+.work-preview {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.work-preview img {
+  max-width: 100%;
+  max-height: 700px;
+  border-radius: 20px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.work-preview img.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RIGHT: WORK LIST */
+.work-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Fixed header */
+.work-list-header {
+  flex-shrink: 0;
+}
+
+/* Scrollable only list items */
+.project-scroll {
+  overflow-y: auto;
+  flex-grow: 1;
+  -webkit-overflow-scrolling: touch;
+}
+
+.project-scroll::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* Typography */
+.work-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.work-line {
+  height: 1px;
+  background-color: var(--text);
+  opacity: 0.5;
+  margin: 1.2rem 0 2.2rem;
+}
+
+
+.project-item {
+  display: flex;
+  font-family: 'Courier New', Courier, monospace;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: relative;
+  cursor: pointer;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+[data-theme="dark"] .project-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.301);
+}
+
+.project-item .arrow {
+  margin-right: 0;
+  font-size: 1.5rem;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.project-item a {
+  text-decoration: none;
+  color: var(--text);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.project-item .category {
+  margin-left: auto;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+.project-item .arrow,
+.project-item a {
+  transition: transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+
+.project-item:hover .arrow {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.project-item:hover a {
+  color: var(--accent);
+  transform: translateX(10px);
+}
+
+.category {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  margin-left: auto;
+  opacity: 0.5;
+}
+
+/* ========== OVERLAY MENU ========== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+.overlay.visible {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.overlay-header {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  right: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.overlay-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 50px;
+  height: auto;
+}
+
+.brand-text {
+  font-size: 1rem;
+}
+
+.overlay-controls button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: var(--text);
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.close-btn {
+  font-size: 1.6rem;
+}
+
+.overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 10vw;
+  transform: translateY(-50%);
+}
+
+.overlay-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.overlay-nav {
+  list-style: none;
+  margin: 0 0 2rem 0;
+  padding: 0;
+}
+
+.overlay-nav li {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.overlay-nav .index {
+  font-size: 0.9rem;
+  margin-right: 0.8rem;
+  opacity: 0.6;
+}
+
+.overlay-nav a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.overlay-nav a:hover {
+  color: var(--accent);
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.social-links a {
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+}
+
+.social-links a:hover {
+  color: var(--accent);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .work-container {
+    flex-direction: column;
+  }
+
+  .work-preview {
+    margin-bottom: 0;
+  }
+
+  .work-preview img {
+    border-radius: 22px;
+  }
+
+  .work-title {
+    font-size: 2.2rem;
+  }
+
+  .project-item {
+    font-size: 1.2rem;
+  }
+
+  .project-item .arrow {
+    font-size: 1.2rem;
+  }
+
+  .category {
+    display: none;
+  }
+
+  .overlay-nav li {
+    font-size: 2rem;
+  }
+
+  .overlay-content {
+    left: 5vw;
+  }
+}
+
+/* Light Mode */
+[data-theme="light"] .logo,
+[data-theme="light"] .brand-logo {
+  filter: invert(0%); /* Hitam atau warna asli */
+}
+
+/* Dark Mode */
+[data-theme="dark"] .logo,
+[data-theme="dark"] .brand-logo {
+  filter: invert(100%); /* Membalik warna, jadi putih jika awalnya hitam */
+}
+
+
+#modeToggle img,
+#modeToggleOverlay img {
+  width: 24px;
+  height: 24px;
+  transition: filter 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  /* Ukuran dasar disamakan dulu */
+  object-fit: contain;
+}
+
+/* Khusus ikon sun di dark mode: lebih cerah dan scale normal */
+[data-theme="dark"] #modeToggle img[src*="sun.svg"],
+[data-theme="dark"] #modeToggleOverlay img[src*="sun.svg"] {
+  filter: brightness(2.5) contrast(1.2);
+  transform: scale(1);
+}
+
+/* Khusus ikon moon: sedikit lebih kecil supaya proporsional */
+#modeToggle img[src*="moon.svg"],
+#modeToggleOverlay img[src*="moon.svg"] {
+  transform: scale(0.79);
+}
+
+/* Hover efek untuk ikon (sedikit membesar dan lebih cerah) */
+#modeToggle:hover img,
+#modeToggleOverlay:hover img {
+  filter: brightness(1.5);
+  transform: scale(1.1);
+}
+
+/* Hover efek khusus dark mode + ikon sun */
+[data-theme="dark"] #modeToggle:hover img[src*="sun.svg"],
+[data-theme="dark"] #modeToggleOverlay:hover img[src*="sun.svg"] {
+  filter: brightness(3) contrast(1.3);
+  transform: scale(1.1);
+}
+
+/* Hover efek khusus ikon moon */
+#modeToggle:hover img[src*="moon.svg"],
+#modeToggleOverlay:hover img[src*="moon.svg"] {
+  transform: scale(0.9);
+}
